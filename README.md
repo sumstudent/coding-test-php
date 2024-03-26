@@ -39,8 +39,6 @@ The application should now be accessible at http://localhost:34251
 ## How to check
 
 ### Authentication
-TODO: pls summarize how to check "Authentication" bahavior
-
 Users undergo authentication via tokens, with their login credentials being transmitted in JSON format. 
 Below is a scenario depicting a user attempting to login.
 
