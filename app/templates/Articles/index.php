@@ -11,7 +11,7 @@
                 <?= $this->Html->link($article->title, ['action' => 'view', $article->slug]) ?>
             </td>
             <td>
-                <?= isset($article->created_at) ? $article->created_at->format('Y-m-d H:i:s') : 'N/A' ?>
+                <?= isset($article->created_at) ? $article['created_at'] : 'N/A' ?>
             </td>
         </tr>
     <?php endforeach; ?>
