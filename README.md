@@ -53,7 +53,7 @@ Retrive All Articles
 ![image](https://github.com/sumstudent/coding-test-php/assets/61895002/8859cc8f-a918-4b68-bbc1-9d8ba85552d1)
 Retrive via Article Id
 ![image](https://github.com/sumstudent/coding-test-php/assets/61895002/9c6fdfff-ed69-4af8-a640-2901c19749d2)
-(Logged-in)
+### (Logged-in)
 Users logged-in have the ability to add an article
 Add an Article
 ![image](https://github.com/sumstudent/coding-test-php/assets/61895002/4f66176a-eb56-4493-937f-6a84c3d646dc)
