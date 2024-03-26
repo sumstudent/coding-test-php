@@ -27,12 +27,6 @@ use Cake\Routing\RouteBuilder;
 use Cake\Routing\Route\DashedRoute;
 use Authentication\Middleware\AuthenticationMiddleware;
 
-/*
- * This file is loaded in the context of the `Application` class.
-  * So you can use  `$this` to reference the application class instance
-  * if required.
- */
-
 return function (RouteBuilder $routes): void {
     /*
      * The default class to use for all routes
@@ -67,24 +61,17 @@ return function (RouteBuilder $routes): void {
         $routes->get('/articles/{id}.json', ['controller' => 'Articles', 'action' => 'view', '_ext' => 'json'])
             ->setPatterns(['id' => '\d+'])
             ->setPass(['id']);
-        /**
-         * If request is post this will route is occur
-         */
+        
         $routes->post('/articles/add', ['controller' => 'Articles', 'action' => 'add']);
         //$routes->post('/articles.json', ['controller' => 'Articles', 'action' => 'add', '_ext' => 'json']);
 
         //Auth API
         $routes->registerMiddleware('auth', new AuthenticationMiddleware($this));
         $routes->applyMiddleware('auth');
-        $routes->post('/user/register', ['controller' => 'Users', 'action' => 'register']);
         $routes->post('/user/login', ['controller' => 'Users', 'action' => 'login']);
         $routes->delete('/user/logout', ['controller' => 'Users', 'action' => 'logout']);
+        $routes->post('/user/register', ['controller' => 'Users', 'action' => 'register']);
     });
-
-
-
-
-
 
 
     $routes->scope('/', function (RouteBuilder $builder): void {
