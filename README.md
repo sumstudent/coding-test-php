@@ -55,8 +55,13 @@ Retrive via Article Id
 ![image](https://github.com/sumstudent/coding-test-php/assets/61895002/9c6fdfff-ed69-4af8-a640-2901c19749d2)
 Add an Article
 ![image](https://github.com/sumstudent/coding-test-php/assets/61895002/4f66176a-eb56-4493-937f-6a84c3d646dc)
+After;
+![image](https://github.com/sumstudent/coding-test-php/assets/61895002/cc1f4fdc-2977-4a0f-b1e2-bc35c02f9153)
 Update an Article
 ![image](https://github.com/sumstudent/coding-test-php/assets/61895002/d617f3e0-1f66-4e30-8a50-6d0123c8810f)
+After;
+![image](https://github.com/sumstudent/coding-test-php/assets/61895002/58182c10-d4c3-45e2-91f9-4dfc7700a119)
+
 
 
 
