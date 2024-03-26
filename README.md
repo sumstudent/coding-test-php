@@ -53,14 +53,17 @@ Retrive All Articles
 ![image](https://github.com/sumstudent/coding-test-php/assets/61895002/8859cc8f-a918-4b68-bbc1-9d8ba85552d1)
 Retrive via Article Id
 ![image](https://github.com/sumstudent/coding-test-php/assets/61895002/9c6fdfff-ed69-4af8-a640-2901c19749d2)
+Users logged-in have the ability to add an article
 Add an Article
 ![image](https://github.com/sumstudent/coding-test-php/assets/61895002/4f66176a-eb56-4493-937f-6a84c3d646dc)
 After;
 ![image](https://github.com/sumstudent/coding-test-php/assets/61895002/cc1f4fdc-2977-4a0f-b1e2-bc35c02f9153)
+Users logged-in have the ability to update an article
 Update an Article
 ![image](https://github.com/sumstudent/coding-test-php/assets/61895002/6fb70b90-cf26-4d77-bd56-cfb7d29fdf1c)
 After;
 ![image](https://github.com/sumstudent/coding-test-php/assets/61895002/ca2b8f84-3dcc-4229-84c4-fc9a74b7e765)
+Users logged-in have the ability to delete an article
 Deleting an Article
 ![image](https://github.com/sumstudent/coding-test-php/assets/61895002/a0dbae3a-f915-4ab0-968c-22a0a943cdff)
 After;
@@ -70,4 +73,11 @@ After;
 
 ### Like Feature
 Users can express their appreciation for a post by specifying the article ID to like it.
-![image](https://github.com/sumstudent/coding-test-php/assets/61895002/10873817-bda6-4188-97b1-431fde59be26)
+![image](https://github.com/sumstudent/coding-test-php/assets/61895002/a844f9f9-2ffe-48c0-9709-4ec612265286)
+![image](https://github.com/sumstudent/coding-test-php/assets/61895002/3fead8f4-922d-4e19-a0da-9e892083ab91)
+Users can also see the amount of likes in a post
+![image](https://github.com/sumstudent/coding-test-php/assets/61895002/77364069-658d-4be7-b1ac-5b807273348f)
+
+
+
+
