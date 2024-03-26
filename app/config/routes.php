@@ -51,6 +51,11 @@ return function (RouteBuilder $routes): void {
 
     $routes->setExtensions(['json', 'xml']);
 
+    /**
+     * Will retrieve all articles from database into json
+     */
+    $routes->get('/articles.json', ['controller' => 'Articles', 'action' => 'index', '_ext' => 'json']);
+
     $routes->scope('/', function (RouteBuilder $builder): void {
         /*
          * Here, we are connecting '/' (base path) to a controller called 'Pages',
