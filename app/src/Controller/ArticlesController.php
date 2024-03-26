@@ -8,21 +8,40 @@ use App\Controller\AppController;
 class ArticlesController extends AppController
 {
 
-    public function beforeFilter(\Cake\Event\EventInterface $event) {
+    public function beforeFilter(\Cake\Event\EventInterface $event)
+    {
 
         parent::beforeFilter($event);
-        $this->Authentication->addUnauthenticatedActions(['index','view']);
+        $this->Authentication->addUnauthenticatedActions(['index', 'view']);
     }
 
     public function index()
     {
-        $articles = $this->Articles->find()->toArray(); // Fetches all articles as an array
+        // Fetch all articles from the database
+        $articles = $this->Articles->find()->toArray();
+
+        // Check if any articles were found
+        if ($articles === null || empty($articles)) {
+            // Return a 404 Not Found response
+            return $this->jsonResponse(404, ['error' => 'No articles found']);
+        }
+
+        // Respond with a JSON representation of the articles and a 200 OK status
         return $this->jsonResponse(200, $articles);
     }
 
     public function view($id)
     {
-        $article = $this->Articles->get($id); //Fetches the article by id
+        // Fetch the article from the database by its ID
+        $article = $this->Articles->get($id);
+
+        // Check if the article was found
+        if ($article === null) {
+            // Return a 404 Not Found response
+            return $this->jsonResponse(404, ['error' => 'Article not found']);
+        }
+
+        // Respond with a JSON representation of the article and a 200 OK status
         return $this->jsonResponse(200, $article);
     }
 
