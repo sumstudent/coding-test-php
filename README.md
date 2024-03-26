@@ -68,9 +68,6 @@ After;
 
 
 
-
-
-
 ### Like Feature
-
-TODO: pls summarize how to check "Like Feature" bahavior
+Users can express their appreciation for a post by specifying the article ID to like it.
+![image](https://github.com/sumstudent/coding-test-php/assets/61895002/10873817-bda6-4188-97b1-431fde59be26)
