@@ -40,6 +40,13 @@ The application should now be accessible at http://localhost:34251
 
 ### Authentication
 TODO: pls summarize how to check "Authentication" bahavior
+Users undergo authentication via tokens, with their login credentials being transmitted in JSON format. 
+Below is a scenario depicting a user attempting to login.
+
+![image](https://github.com/sumstudent/coding-test-php/assets/61895002/a5c8f96d-5cc5-4ca2-8bca-2cea2deddc14)
+Unauthorized Attempt
+![image](https://github.com/sumstudent/coding-test-php/assets/61895002/ea936f7a-bdc8-4a3f-b11e-19c4357db21b)
+
 
 ### Article Management
 
