@@ -53,6 +53,7 @@ Retrive All Articles
 ![image](https://github.com/sumstudent/coding-test-php/assets/61895002/8859cc8f-a918-4b68-bbc1-9d8ba85552d1)
 Retrive via Article Id
 ![image](https://github.com/sumstudent/coding-test-php/assets/61895002/9c6fdfff-ed69-4af8-a640-2901c19749d2)
+(Logged-in)
 Users logged-in have the ability to add an article
 Add an Article
 ![image](https://github.com/sumstudent/coding-test-php/assets/61895002/4f66176a-eb56-4493-937f-6a84c3d646dc)
@@ -71,7 +72,7 @@ After;
 
 
 
-### Like Feature
+### Like Feature (Logged-in)
 Users can express their appreciation for a post by specifying the article ID to like it.
 ![image](https://github.com/sumstudent/coding-test-php/assets/61895002/a844f9f9-2ffe-48c0-9709-4ec612265286)
 ![image](https://github.com/sumstudent/coding-test-php/assets/61895002/3fead8f4-922d-4e19-a0da-9e892083ab91)
