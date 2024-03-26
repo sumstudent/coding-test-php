@@ -50,8 +50,12 @@ Unauthorized Attempt
 
 
 ### Article Management
+Users have the ability to access and read articles without the necessity of logging in.
+Retrive All Articles
+![image](https://github.com/sumstudent/coding-test-php/assets/61895002/8859cc8f-a918-4b68-bbc1-9d8ba85552d1)
+Retrive via Article Id
+![image](https://github.com/sumstudent/coding-test-php/assets/61895002/9c6fdfff-ed69-4af8-a640-2901c19749d2)
 
-TODO: pls summarize how to check "Article Management" bahavior
 
 ### Like Feature
 
