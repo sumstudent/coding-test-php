@@ -65,6 +65,12 @@ return function (RouteBuilder $routes): void {
         ->setPatterns(['id' => '\d+'])
         ->setPass(['id']);
 
+    /**
+     * If request is post this will route is occur
+     */
+    $routes->post('/articles/add', ['controller' => 'Articles', 'action' => 'add']);
+    //$routes->post('/articles.json', ['controller' => 'Articles', 'action' => 'add', '_ext' => 'json']);
+
     $routes->scope('/', function (RouteBuilder $builder): void {
         /*
          * Here, we are connecting '/' (base path) to a controller called 'Pages',
