@@ -65,6 +65,5 @@ return function (RouteBuilder $routes): void {
             ->setPatterns(['id' => '\d+'])
             ->setPass(['id']);
         $routes->post('/likes', ['controller' => 'Likes', 'action' => 'countLikes']);
-        $routes->delete('/likes/:id', ['controller' => 'Likes', 'action' => 'Unlike']);
     });
 };
