@@ -73,7 +73,7 @@ class ArticlesController extends AppController
         $article = $this->Articles->newEntity($requestData);
 
         if ($this->Articles->save($article)) {
-            return $this->jsonResponse(201, ['message' => 'The article has been saved.']);
+            return $this->jsonResponse(201, ['message' => 'Article has been saved.']);
         } else {
             // Debugging: Check for validation errors
             $errors = $article->getErrors();
@@ -96,9 +96,8 @@ class ArticlesController extends AppController
 
         if ($this->request->is(['post', 'put'])) {
             $article = $this->Articles->patchEntity($article, $this->request->getData());
-
             if ($this->Articles->save($article)) {
-                return $this->jsonResponse(200, ['message' => 'The article has been updated.']);
+                return $this->jsonResponse(200, ['message' => 'Article has been updated.']);
             } else {
                 return $this->jsonResponse(400, ['error' => 'Unable to update the article.']);
             }
@@ -114,15 +113,12 @@ class ArticlesController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-
         $article = $this->Articles->find()->where(['id' => $id])->first();
-
         if (!$article) {
             return $this->jsonResponse(404, ['error' => 'Article not found']);
         }
-
         if ($this->Articles->delete($article)) {
-            return $this->jsonResponse(200, ['message' => 'The article has been deleted.']);
+            return $this->jsonResponse(200, ['message' => 'Article has been deleted.']);
         } else {
             return $this->jsonResponse(400, ['error' => 'Unable to delete the article.']);
         }
