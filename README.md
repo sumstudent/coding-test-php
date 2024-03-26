@@ -58,9 +58,15 @@ Add an Article
 After;
 ![image](https://github.com/sumstudent/coding-test-php/assets/61895002/cc1f4fdc-2977-4a0f-b1e2-bc35c02f9153)
 Update an Article
-![image](https://github.com/sumstudent/coding-test-php/assets/61895002/d617f3e0-1f66-4e30-8a50-6d0123c8810f)
+![image](https://github.com/sumstudent/coding-test-php/assets/61895002/6fb70b90-cf26-4d77-bd56-cfb7d29fdf1c)
 After;
-![image](https://github.com/sumstudent/coding-test-php/assets/61895002/58182c10-d4c3-45e2-91f9-4dfc7700a119)
+![image](https://github.com/sumstudent/coding-test-php/assets/61895002/ca2b8f84-3dcc-4229-84c4-fc9a74b7e765)
+Deleting an Article
+![image](https://github.com/sumstudent/coding-test-php/assets/61895002/a0dbae3a-f915-4ab0-968c-22a0a943cdff)
+After;
+![image](https://github.com/sumstudent/coding-test-php/assets/61895002/3afc3de6-03dd-41b6-935d-4a8a2145b506)
+
+
 
 
 
