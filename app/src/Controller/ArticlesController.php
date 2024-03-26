@@ -57,4 +57,34 @@ class ArticlesController extends AppController
             return $this->jsonResponse(400, ['error' => 'Unable to add the article.']);
         }
     }
+
+    public function edit($id = null) {
+        $article = $this->Articles->get($id);
+
+        if ($this->request->is(['post', 'put'])) {
+            $article = $this->Articles->patchEntity($article, $this->request->getData());
+
+            if ($this->Articles->save($article)) {
+                return $this->jsonResponse(200, ['message' => 'The article has been updated.']);
+            } else {
+                return $this->jsonResponse(400, ['error' => 'Unable to update the article.']);
+            }
+        }
+    }
+
+    public function delete($id = null) {
+        $this->request->allowMethod(['post', 'delete']);
+    
+        $article = $this->Articles->find()->where(['id' => $id])->first();
+    
+        if (!$article) {
+            return $this->jsonResponse(404, ['error' => 'Article not found']);
+        }
+    
+        if ($this->Articles->delete($article)) {
+            return $this->jsonResponse(200, ['message' => 'The article has been deleted.']);
+        } else {
+            return $this->jsonResponse(400, ['error' => 'Unable to delete the article.']);
+        }
+    }
 }
