@@ -3,13 +3,14 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
  * Articles Model
+ *
+ * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
  *
  * @method \App\Model\Entity\Article newEmptyEntity()
  * @method \App\Model\Entity\Article newEntity(array $data, array $options = [])
@@ -44,9 +45,6 @@ class ArticlesTable extends Table
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER',
-        ]);
-        $this->hasMany('Likes', [
-            'foreignKey' => 'article_id',
         ]);
     }
 

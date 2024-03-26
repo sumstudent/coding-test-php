@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -12,7 +11,6 @@ use Cake\Validation\Validator;
  * Users Model
  *
  * @property \App\Model\Table\ArticlesTable&\Cake\ORM\Association\HasMany $Articles
- * @property \App\Model\Table\LikesTable&\Cake\ORM\Association\HasMany $Likes
  *
  * @method \App\Model\Entity\User newEmptyEntity()
  * @method \App\Model\Entity\User newEntity(array $data, array $options = [])
@@ -45,9 +43,6 @@ class UsersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->hasMany('Articles', [
-            'foreignKey' => 'user_id',
-        ]);
-        $this->hasMany('Likes', [
             'foreignKey' => 'user_id',
         ]);
     }

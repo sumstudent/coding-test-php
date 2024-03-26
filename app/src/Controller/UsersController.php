@@ -1,20 +1,28 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\Http\Exception\UnauthorizedException;
 use Firebase\JWT\JWT; //using json web tokens
 
 class UsersController extends AppController
 {
-    public function beforeFilter(\Cake\Event\EventInterface $event) {
-
+    /**
+     * @inheritDoc
+     */
+    public function beforeFilter(\Cake\Event\EventInterface $event): void
+    {
         parent::beforeFilter($event);
         $this->Authentication->addUnauthenticatedActions(['login', 'register']);
     }
 
+    /**
+     * Logs in a user and returns a JWT token on success.
+     *
+     * @return \Cake\Http\Response JSON response
+     */
     public function login() {
         $this->request->allowMethod('post');
 
@@ -32,20 +40,32 @@ class UsersController extends AppController
         return $this->jsonResponse(200, ['token' => $token]);
     }
 
-    private function generateJwtToken($userId) {
+    /**
+     * Generates a JWT token for the given user ID.
+     *
+     * @param int $userId The user ID
+     * @return string The generated JWT token
+     */
+    private function generateJwtToken(int $userId): string
+    {
         $expirationTime = time() + 864000; // 10 days in seconds
-    
+
         $payload = [
             'sub' => $userId,
             'exp' => $expirationTime,
             'iat' => time(),
             'iss' => 'your_issuer',
         ];
-    
+
         $secretKey = 'your_secret_key';
         return JWT::encode($payload, $secretKey, 'HS256');
     }
 
+    /**
+     * Registers a new user and returns a JWT token on success.
+     *
+     * @return \Cake\Http\Response JSON response
+     */
     public function register() {
         $this->request->allowMethod('post');
 
@@ -62,12 +82,17 @@ class UsersController extends AppController
         }
     }
 
-    public function logout() {
+    /**
+     * Logs out the current user.
+     *
+     * @return \Cake\Http\Response JSON response
+     */
+    public function logout(): \Cake\Http\Response
+    {
         $result = $this->Authentication->getResult();
         if ($result && $result->isValid()) {
             $this->Authentication->logout();
             return $this->jsonResponse(200, ['success' => 'User has been logged out']);
         }
     }
-
 }

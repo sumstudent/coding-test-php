@@ -421,4 +421,12 @@ return [
     'Session' => [
         'defaults' => 'php',
     ],
+    
+    'Authentication' => [
+        'loginAction' => [
+            'plugin' => 'Users',
+            'controller' => 'Users',
+            'action' => 'login',
+        ]
+    ],
 ];

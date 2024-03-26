@@ -27,63 +27,44 @@ use Cake\Routing\RouteBuilder;
 use Cake\Routing\Route\DashedRoute;
 use Authentication\Middleware\AuthenticationMiddleware;
 
-return function (RouteBuilder $routes): void {
-    /*
-     * The default class to use for all routes
-     *
-     * The following route classes are supplied with CakePHP and are appropriate
-     * to set as the default:
-     *
-     * - Route
-     * - InflectedRoute
-     * - DashedRoute
-     *
-     * If no call is made to `Router::defaultRouteClass()`, the class used is
-     * `Route` (`Cake\Routing\Route\Route`)
-     *
-     * Note that `Route` does not do any inflections on URLs which will result in
-     * inconsistently cased URLs when used with `{plugin}`, `{controller}` and
-     * `{action}` markers.
-     */
-    $routes->setRouteClass(DashedRoute::class);
+/*
+ * This file is loaded in the context of the `Application` class.
+ * So you can use  `$this` to reference the application class instance
+ * if required.
+ */
 
+return function (RouteBuilder $routes): void {
+    $routes->setRouteClass(DashedRoute::class);
     $routes->setExtensions(['json', 'xml']);
 
     Router::scope('/', function ($routes) {
-        /**
-         * Will display all articles from database into json format
-         */
-        $routes->get('/articles.json', ['controller' => 'Articles', 'action' => 'index', '_ext' => 'json']);
 
-        /**
-         * Will display a single article from database into json format using id of the article
-         */
-        $routes->get('/articles/{id}.json', ['controller' => 'Articles', 'action' => 'view', '_ext' => 'json'])
-            ->setPatterns(['id' => '\d+'])
-            ->setPass(['id']);
-        
-        $routes->post('/articles/add', ['controller' => 'Articles', 'action' => 'add']);
-        //$routes->post('/articles.json', ['controller' => 'Articles', 'action' => 'add', '_ext' => 'json']);
-
-        //Auth API
         $routes->registerMiddleware('auth', new AuthenticationMiddleware($this));
         $routes->applyMiddleware('auth');
+
+        // Articles Endpoints
+        $routes->get('/articles.json', ['controller' => 'Articles', 'action' => 'index']);
+        $routes->get('/articles/:id.json', ['controller' => 'Articles', 'action' => 'view'])
+            ->setPatterns(['id' => '\d+'])
+            ->setPass(['id']);
+        $routes->post('/articles.json', ['controller' => 'Articles', 'action' => 'add']);
+        $routes->put('/articles/:id.json', ['controller' => 'Articles', 'action' => 'edit'])
+            ->setPatterns(['id' => '\d+'])
+            ->setPass(['id']);
+        $routes->delete('/articles/:id.json', ['controller' => 'Articles', 'action' => 'delete'])
+            ->setPatterns(['id' => '\d+'])
+            ->setPass(['id']);
+
+        // Authentication Endpoints
+        $routes->post('/user/register', ['controller' => 'Users', 'action' => 'register']);
         $routes->post('/user/login', ['controller' => 'Users', 'action' => 'login']);
         $routes->delete('/user/logout', ['controller' => 'Users', 'action' => 'logout']);
-        $routes->post('/user/register', ['controller' => 'Users', 'action' => 'register']);
-    });
 
-
-    $routes->scope('/', function (RouteBuilder $builder): void {
-        /*
-         * Here, we are connecting '/' (base path) to a controller called 'Pages',
-         * its action called 'display', and we pass a param to select the view file
-         * to use (in this case, templates/Pages/home.php)...
-         */
-        $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
-        $builder->connect('/pages/*', 'Pages::display');
-
-        $builder->resources('Articles');
-        $builder->fallbacks();
+        // Like Endpoints
+        $routes->get('/likes/:id', ['controller' => 'Likes', 'action' => 'view'])
+            ->setPatterns(['id' => '\d+'])
+            ->setPass(['id']);
+        $routes->post('/likes', ['controller' => 'Likes', 'action' => 'countLikes']);
+        $routes->delete('/likes/:id', ['controller' => 'Likes', 'action' => 'Unlike']);
     });
 };
