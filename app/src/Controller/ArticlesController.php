@@ -47,19 +47,14 @@ class ArticlesController extends AppController
 
     public function add()
     {
-        $article = $this->Articles->newEntity();
+        $this->request->allowMethod('post');
+        $requestData = $this->request->input('json_decode', true);
+        $article = $this->Articles->newEntity($requestData);
 
-        if ($this->request->is('post')) {
-            $article = $this->Articles->patchEntity($article, $this->request->getData());
-            $article->user_id = $this->Auth->user('id'); // Assign the current user's ID
-
-            if ($this->Articles->save($article)) {
-                $this->Flash->success(__('The article has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('Unable to add the article. Please, try again.'));
+        if ($this->Articles->save($article)) {
+            return $this->jsonResponse(201, ['message' => 'The article has been saved.']);
+        } else {
+            return $this->jsonResponse(400, ['error' => 'Unable to add the article.']);
         }
-
-        $this->set(compact('article'));
     }
 }

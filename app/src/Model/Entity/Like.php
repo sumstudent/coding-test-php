@@ -9,8 +9,8 @@ use Cake\ORM\Entity;
  * Like Entity
  *
  * @property int $id
- * @property int $user_id
  * @property int $article_id
+ * @property int $user_id
  *
  * @property \App\Model\Entity\User $user
  * @property \App\Model\Entity\Article $article
@@ -27,8 +27,8 @@ class Like extends Entity
      * @var array<string, bool>
      */
     protected $_accessible = [
-        'user_id' => true,
         'article_id' => true,
+        'user_id' => true,
         'user' => true,
         'article' => true,
     ];
