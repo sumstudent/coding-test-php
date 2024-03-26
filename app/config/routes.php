@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Routes configuration.
  *
@@ -29,6 +30,7 @@ use Cake\Routing\RouteBuilder;
   * So you can use  `$this` to reference the application class instance
   * if required.
  */
+
 return function (RouteBuilder $routes): void {
     /*
      * The default class to use for all routes
@@ -52,9 +54,16 @@ return function (RouteBuilder $routes): void {
     $routes->setExtensions(['json', 'xml']);
 
     /**
-     * Will retrieve all articles from database into json
+     * Will display all articles from database into json format
      */
     $routes->get('/articles.json', ['controller' => 'Articles', 'action' => 'index', '_ext' => 'json']);
+
+    /**
+     * Will display a single article from database into json format using id of the article
+     */
+    $routes->get('/articles/{id}.json', ['controller' => 'Articles', 'action' => 'view', '_ext' => 'json'])
+        ->setPatterns(['id' => '\d+'])
+        ->setPass(['id']);
 
     $routes->scope('/', function (RouteBuilder $builder): void {
         /*
