@@ -7,11 +7,10 @@ use App\Controller\AppController;
 
 class ArticlesController extends AppController
 {
-
     public function index()
     {
-        $this->loadComponent('Paginator');
-        $articles = $this->Paginator->paginate($this->Articles->find());
+        $articles = $this->Articles->find()->toArray(); // Fetch all articles as an array
         $this->set(compact('articles'));
+        $this->viewBuilder()->setOption('serialize', ['articles']); // Serialize articles to JSON
     }
 }
