@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -14,6 +15,7 @@ declare(strict_types=1);
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Controller\Controller;
@@ -44,10 +46,28 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
 
+        $this->loadComponent('Authentication.Authentication');
+
         /*
          * Enable the following component for recommended CakePHP form protection settings.
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
          */
         //$this->loadComponent('FormProtection');
+    }
+
+    /**
+     * jsonResponse method
+     *
+     * @param int $code The HTTP status code
+     * @param mixed $responseData The data to be returned in the response
+     * @return \Cake\Http\Response Returns the JSON response
+     */
+    protected function jsonResponse(int $code, $responseData): \Cake\Http\Response
+    {
+        $this->response = $this->response
+            ->withType('application/json')
+            ->withStatus($code)
+            ->withStringBody(json_encode($responseData));
+        return $this->response;
     }
 }
