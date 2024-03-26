@@ -22,8 +22,10 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-use Cake\Routing\Route\DashedRoute;
+use Cake\Routing\Router;
 use Cake\Routing\RouteBuilder;
+use Cake\Routing\Route\DashedRoute;
+use Authentication\Middleware\AuthenticationMiddleware;
 
 /*
  * This file is loaded in the context of the `Application` class.
@@ -53,23 +55,37 @@ return function (RouteBuilder $routes): void {
 
     $routes->setExtensions(['json', 'xml']);
 
-    /**
-     * Will display all articles from database into json format
-     */
-    $routes->get('/articles.json', ['controller' => 'Articles', 'action' => 'index', '_ext' => 'json']);
+    Router::scope('/', function ($routes) {
+        /**
+         * Will display all articles from database into json format
+         */
+        $routes->get('/articles.json', ['controller' => 'Articles', 'action' => 'index', '_ext' => 'json']);
 
-    /**
-     * Will display a single article from database into json format using id of the article
-     */
-    $routes->get('/articles/{id}.json', ['controller' => 'Articles', 'action' => 'view', '_ext' => 'json'])
-        ->setPatterns(['id' => '\d+'])
-        ->setPass(['id']);
+        /**
+         * Will display a single article from database into json format using id of the article
+         */
+        $routes->get('/articles/{id}.json', ['controller' => 'Articles', 'action' => 'view', '_ext' => 'json'])
+            ->setPatterns(['id' => '\d+'])
+            ->setPass(['id']);
+        /**
+         * If request is post this will route is occur
+         */
+        $routes->post('/articles/add', ['controller' => 'Articles', 'action' => 'add']);
+        //$routes->post('/articles.json', ['controller' => 'Articles', 'action' => 'add', '_ext' => 'json']);
 
-    /**
-     * If request is post this will route is occur
-     */
-    $routes->post('/articles/add', ['controller' => 'Articles', 'action' => 'add']);
-    //$routes->post('/articles.json', ['controller' => 'Articles', 'action' => 'add', '_ext' => 'json']);
+        //Auth API
+        $routes->registerMiddleware('auth', new AuthenticationMiddleware($this));
+        $routes->applyMiddleware('auth');
+        $routes->post('/user/register', ['controller' => 'Users', 'action' => 'register']);
+        $routes->post('/user/login', ['controller' => 'Users', 'action' => 'login']);
+        $routes->delete('/user/logout', ['controller' => 'Users', 'action' => 'logout']);
+    });
+
+
+
+
+
+
 
     $routes->scope('/', function (RouteBuilder $builder): void {
         /*
@@ -78,43 +94,9 @@ return function (RouteBuilder $routes): void {
          * to use (in this case, templates/Pages/home.php)...
          */
         $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
-
-        /*
-         * ...and connect the rest of 'Pages' controller's URLs.
-         */
         $builder->connect('/pages/*', 'Pages::display');
 
         $builder->resources('Articles');
-
-        /*
-         * Connect catchall routes for all controllers.
-         *
-         * The `fallbacks` method is a shortcut for
-         *
-         * ```
-         * $builder->connect('/{controller}', ['action' => 'index']);
-         * $builder->connect('/{controller}/{action}/*', []);
-         * ```
-         *
-         * You can remove these routes once you've connected the
-         * routes you want in your application.
-         */
         $builder->fallbacks();
     });
-
-    /*
-     * If you need a different set of middleware or none at all,
-     * open new scope and define routes there.
-     *
-     * ```
-     * $routes->scope('/api', function (RouteBuilder $builder): void {
-     *     // No $builder->applyMiddleware() here.
-     *
-     *     // Parse specified extensions from URLs
-     *     // $builder->setExtensions(['json', 'xml']);
-     *
-     *     // Connect API actions here.
-     * });
-     * ```
-     */
 };
